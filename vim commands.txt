@@ -1,0 +1,107 @@
+:e $MYVIMRC -edits vimrc
+:source $MYVIMRC - get updated vimrc without quitting. 
+filename- "%p
+:set guifont?
+open multiple files:  :n, :prev (to navigate between them)
+tabedit newfile
+or
+vim a.abc, b.abc
+vim -p filenames opens tabs.
+ switch with :tabn and :tabp, :tabe <filepath> adds a new file or switch with gt gT next prev, {i}gt for ith tab. tabclose to close. 
+:wq save quit
+
+:q! to not save quit
+
+:n for nth line
+
+:%s/searchfor/replacewith/every occurance on line?g or else no g
+
+h left			b for word
+
+j down
+
+k up
+
+1851
+
+l right 		w for word
+
+i to insert
+
+o to enter new line insert
+
+yy to copy
+"+yy to copy externally
+
+p to paste(bottom)
+"+p to paste external
+shift p  to paste up
+
+dd to delete
+
+u to undo
+
+G to bottom
+
+gg to top 
+
+{ block
+
+N(number) + command =n times command
+
+escape to escape insert
+
+V to enter select mode(select multiple lines)
+
+f(character) finds character there
+
+% to go to other end of paranthesis
+
+>> indent
+
+<< unindent
+
+:N,$s/$/\r/ go to line N, add \n to all lines 
+:g/./ norm o add spaces containing '.'(everything) for eg :g/[a-z]/norm o        :g! means not containing, diff between g and s is g is for commands, s for text.
+visual select+ ':' gives that subset of lines
+<C-letter> means ctrl+letter
+<Esc>=esc
+<Enter>=enter
+
+ctrl O for going to previous point, ctrl I for next
+/ to search, n for next match, N for previous match
+NUMBER+G=line
+ctrl+g=show current file deets
+matching brace is using % while on matching brace.
+
+:!<external  command>
+
+set ic-ignore case,   hls -highlight is:partial matches, prepend no to remove example set noic
+
+GLOB FUNCTIONALITY(OPEN MULTIPLE FILES OF SAME TYPE) open vim, :args *.extension
+bufdo=do for all buffers
+:sp filename=split pane <c-w>+k,j to move up down between panes
+:noh =no highlight till next search
+"%p puts filename in vim
+
+:find filename opens filename
+:find *_part_of_file_name_* gives autocomplete options!!
+:b _substring_ jumps directly if substring is unique, _substring_ tab gives options for non unique
+<c-n> simple autocomplete
+<c-x><c-f(files),c-
+
+:tabedit filename opens file in new tab, gt for next tab, gT for previous tab.
+
+=i{ indent in {
+
+::Explore - VIM FILE EXPLORER!
+Texplore:tabpage
+Sexplore:horizontal
+
+m{lowercase char} to set bookmarks.
+:marks to access all marks.
+`{uppercase char} goes to mark.
+
+g~(m) toggle case
+gU(m) upper case
+gu(m) lower case
