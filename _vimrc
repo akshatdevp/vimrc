@@ -1,14 +1,36 @@
 " Vim with all enhancements
-source $VIMRUNTIME/vimrc_example.vim
+
+source $VIMRUNTIME/defaults.vim
+"source $VIMRUNTIME/vimrc_example.vim
 set number
 set hidden
 set noundofile
 set autoindent
 set wrap
-ino :<space> :<return><tab>
-ino :<return> :<return><tab> 
+set hlsearch
+"syntax on
+colorscheme elflord
+set guifont=Lucida_Sans_Typewriter:h11
+nnoremap ; :
+nnoremap <space><tab> :tabn<return>
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
+if has("vms")
+  set nobackup		" do not keep a backup file, use versions instead
+else
+  set backup		" keep a backup file (restore to previous version)
+  if has('persistent_undo')
+    set undofile	" keep an undo file (undo changes after closing)
+  endif
+endif
+
+if &t_Co > 2 || has("gui_running")
+  " Switch on highlighting the last used search pattern.
+  set hlsearch
+endif
+if has('syntax') && has('eval')
+  packadd! matchit
+endif
 if &diffopt !~# 'internal'
   set diffexpr=MyDiff()
 endif
