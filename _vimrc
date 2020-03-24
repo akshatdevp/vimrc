@@ -8,11 +8,22 @@ set noundofile
 set autoindent
 set wrap
 set hlsearch
+let @c='i#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+return 0;
+{€kb€kb}€ku€ku
+'
 "syntax on
-colorscheme elflord
+colorscheme darkblue
 set guifont=Lucida_Sans_Typewriter:h11
 nnoremap ; :
 nnoremap <space><tab> :tabn<return>
+inoremap >> >><space>
+autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ <C-r>% ' <CR>
+autocmd filetype java nnoremap <F4> :w <bar> exec '!javac <C-r>% ' <CR>
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
 if has("vms")
