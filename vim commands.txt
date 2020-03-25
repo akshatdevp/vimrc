@@ -1,3 +1,8 @@
+:resize 60 or :resize +x or :res __ :vertical resize __ 
+<C-W> + or - does split resiziing
+:sh opens a new shell, exit to go back to vim.
+append reg=> capital letter
+default reg->0
 :e $MYVIMRC -edits vimrc
 :source $MYVIMRC - get updated vimrc without quitting. 
 filename- "%p
@@ -105,3 +110,4 @@ m{lowercase char} to set bookmarks.
 g~(m) toggle case
 gU(m) upper case
 gu(m) lower case
+view register contents- :reg shows all, :reg <key> shows for key.
