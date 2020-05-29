@@ -4,26 +4,66 @@ source $VIMRUNTIME/defaults.vim
 "source $VIMRUNTIME/vimrc_example.vim
 set number
 set hidden
-set noundofile
+"set noundofile
+"set noswapfile
+"set noundofile
+set directory=D:/temporaryvim//
+set backupdir=D:/temporaryvim//
+set undodir=D:/temporaryvim//
 set autoindent
 set wrap
 set hlsearch
-let @c='i#include<bits/stdc++.h>using namespace std;int main(){return 0;{€kb€kb}€ku€ku'
+"let @c='i#include<bits/stdc++.h>
+using namespace std;'
+let @c='i#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+return 0;
+{â‚¬kbâ‚¬kb}â‚¬kuâ‚¬ku
+'
 "syntax on
-:autocmd BufWritePre * :normal gg=G
-autocmd filetype cpp 
+":autocmd BufWritePre * :normal gg=G
 colorscheme darkblue
 set guifont=Lucida_Sans_Typewriter:h11
 nnoremap ; :
 nnoremap <space><tab> :tabn<return>
-nnoremap <F8> :e $MYVIMRC<return>
+nnoremap <F8> :tabe $MYVIMRC<return>
 inoremap >> >><space>
-
+inoremap jk <esc>
+nnoremap <space><space> i<space><esc>
+nnoremap <space><return> :tabe C:\Users\aksha\Desktop\cpptemplate.cpp<return>
 autocmd BufNewFile  *.cpp :norm @c
-autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+autocmd BufNewFile  *.html :norm @h
+
+augroup python_group
+	autocmd!
+	autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+	autocmd filetype python ia iff if:<esc>i
+augroup END
+augroup cpp_group
+	autocmd!
+	autocmd filetype cpp ia iff if()<esc>i
+	autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ <C-r>% ' <CR>
+augroup END
+
+augroup java_group
+	autocmd!
+	autocmd filetype java ia iff if()<esc>i
+	autocmd filetype java nnoremap <F4> :w <bar> exec '!javac <C-r>% ' <CR>
+augroup end
+
+augroup javascript_group
+	autocmd!
+	autocmd filetype javascript ia iff if()<esc>i
+	autocmd filetype javascript ia fnn function()<esc>i
+augroup end
+
 "autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ <C-r>% ' <CR>
-autocmd filetype java nnoremap <F4> :w <bar> exec '!javac <C-r>% ' <CR>
+"autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ <C-r>% ' <CR>
+"autocmd filetype java nnoremap <F4> :w <bar> exec '!javac <C-r>% ' <CR>
+autocmd filetype html nnoremap <F4> :w <bar> exec '!<C-r>%' <CR>
+hi MatchParen ctermbg=red 
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
 if has("vms")
