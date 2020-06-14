@@ -1,7 +1,13 @@
 " Vim with all enhancements
-
 source $VIMRUNTIME/defaults.vim
 "source $VIMRUNTIME/vimrc_example.vim
+"Plugins {{{
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
+"}}}
 set number
 set hidden
 "set noundofile
@@ -13,8 +19,6 @@ set undodir=D:/temporaryvim//
 set autoindent
 set wrap
 set hlsearch
-"let @c='i#include<bits/stdc++.h>
-using namespace std;'
 let @c='i#include<bits/stdc++.h>
 using namespace std;
 int main()
@@ -22,20 +26,28 @@ int main()
 return 0;
 {€kb€kb}€ku€ku
 '
+if has('gui_running')
+syntax enable
+set background=dark
+colorscheme solarized
 "syntax on
 ":autocmd BufWritePre * :normal gg=G
+else
 colorscheme darkblue
+endif
 set guifont=Lucida_Sans_Typewriter:h11
+"mappings{{{
 nnoremap ; :
 nnoremap <space><tab> :tabn<return>
 nnoremap <F8> :tabe $MYVIMRC<return>
+nnoremap <F9> :tabe C:\Users\aksha\Desktop\useful\ commands\ and\ batch\ files\vim\ commands.txt<return>      
 inoremap >> >><space>
 inoremap jk <esc>
 nnoremap <space><space> i<space><esc>
 nnoremap <space><return> :tabe C:\Users\aksha\Desktop\cpptemplate.cpp<return>
+"}}}
 autocmd BufNewFile  *.cpp :norm @c
-autocmd BufNewFile  *.html :norm @h
-
+"" Vimscript file settings ---------------- {{{
 augroup python_group
 	autocmd!
 	autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
@@ -58,12 +70,15 @@ augroup javascript_group
 	autocmd filetype javascript ia iff if()<esc>i
 	autocmd filetype javascript ia fnn function()<esc>i
 augroup end
-
-"autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-"autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ <C-r>% ' <CR>
-"autocmd filetype java nnoremap <F4> :w <bar> exec '!javac <C-r>% ' <CR>
+augroup vim_group
+	autocmd!
+	autocmd filetype vim setlocal foldmethod=marker
+	autocmd filetype vim set foldlevel=0
+augroup end
+"""}}}
 autocmd filetype html nnoremap <F4> :w <bar> exec '!<C-r>%' <CR>
 hi MatchParen ctermbg=red 
+"No clue what this does, came included with vim :p{{{
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
 if has("vms")
@@ -117,4 +132,4 @@ function MyDiff()
 		let &shellxquote=l:shxq_sav
 	endif
 endfunction
-
+"}}}
