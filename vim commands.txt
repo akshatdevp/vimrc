@@ -20,7 +20,7 @@ vim -p filenames opens tabs.
 :n for nth line
 
 :%s/searchfor/replacewith/every occurance on line?g or else no g
-
+Movements {{{
 h left			b for word
 
 j down
@@ -31,10 +31,18 @@ k up
 
 l right 		w for word
 
+G to bottom
+
+gg to top 
+% to go to other end of paranthesis
+ctrl O for going to previous point, ctrl I for next
+}}}
+Insert{{{
 i to insert
-
+I for beginning of line insert
 o to enter new line insert
-
+O for upper line insert
+}}}
 yy to copy
 "+yy to copy externally
 
@@ -46,21 +54,16 @@ dd to delete
 
 u to undo
 
-G to bottom
-
-gg to top 
 
 { block
 
 N(number) + command =n times command
 
-escape to escape insert
 
 V to enter select mode(select multiple lines)
 
 f(character) finds character there
 
-% to go to other end of paranthesis
 
 >> indent
 
@@ -71,9 +74,8 @@ f(character) finds character there
 visual select+ ':' gives that subset of lines
 <C-letter> means ctrl+letter
 <Esc>=esc
-<Enter>=enter
+<Enter> or <CR>=enter
 
-ctrl O for going to previous point, ctrl I for next
 / to search, n for next match, N for previous match
 NUMBER+G=line
 ctrl+g=show current file deets
@@ -110,4 +112,53 @@ m{lowercase char} to set bookmarks.
 g~(m) toggle case
 gU(m) upper case
 gu(m) lower case
+<C-A> adds 1 to number
 view register contents- :reg shows all, :reg <key> shows for key.
+
+:nnoremap <buffer> <leader>x dd <buffer> means only apply mapping for current buffer
+
+
+
+"VIMSCRIPT from (Learn VS the hard way){{{
+setlocal foldmethod=marker
+"HeadingYouWant{{{
+Use   za to fold/unfold after that.
+"}}}
+function names must be capital (can be capital if not in scope but don't do it since it's not a norm.
+"Functions!{{{
+:function DisplayName(name)
+:  echom "Hello!  My name is:"
+:  echom a:name
+:endfunction
+"a:" prefix must be attached to the functions arguments
+Variable argument functions:
+:function Varg(...)
+:  echom a:0 stores the number of args
+:  echom a:1 first arg
+:  echo a:000 list of args, echo is used because list+echom!=success
+:endfunction
+
+:call Varg("a", "b")
+"}}}
+ Type conversion of strings to numbers(stoi) while adding and also number to string, use '.' for concat
+echo is formatted string (with escape chars)
+echom shows what vim sees( for ex \n turns to ^@)
+single quotes string is raw string, and to use single quotes, use ''
+eg ' This is it''s __' prints  This is it's __  
+
+split join works as usual	
+
+"}}}
+"Tpope/surroundVim{{{
+	surround(works with html/xml (even with<p class="asdf"> </p>is added) quite nicely as well!)
+	add surroundingkeys - ys(motion)(object)(surroundWith) " '(' adds ( object ), ')' adds (object) i.e space or no space
+	remove surrounding  - ds(surroundWith)	
+	change surroudningkeys - cs(previous)(new surroundWith)
+	add on line- yss(objects)
+	visual mode- V, select, S (surroundWith)	
+"}}}
+"TPope/Commentary{{{
+gc movement  
+gcc for line
+:g/Search/Commentary also works
+"}}}
