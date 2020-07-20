@@ -6,9 +6,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'altercation/vim-colors-solarized'
+Plug 'mattn/emmet-vim'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'metakirby5/codi.vim'
 call plug#end()
 "}}}
 set number
+set relativenumber
 set hidden
 "set noundofile
 "set noswapfile
@@ -19,13 +23,7 @@ set undodir=D:/temporaryvim//
 set autoindent
 set wrap
 set hlsearch
-let @c='i#include<bits/stdc++.h>
-using namespace std;
-int main()
-{
-return 0;
-{â‚¬kbâ‚¬kb}â‚¬kuâ‚¬ku
-'
+let @c='i#include<bits/stdc++.h>using namespace std;int main(){return 0;{€kb€kb}€ku€ku'
 if has('gui_running')
 syntax enable
 set background=dark
@@ -33,7 +31,7 @@ colorscheme solarized
 "syntax on
 ":autocmd BufWritePre * :normal gg=G
 else
-colorscheme darkblue
+colorscheme elflord 
 endif
 set guifont=Lucida_Sans_Typewriter:h11
 "mappings{{{
@@ -41,22 +39,33 @@ nnoremap ; :
 nnoremap <space><tab> :tabn<return>
 nnoremap <F8> :tabe $MYVIMRC<return>
 nnoremap <F9> :tabe C:\Users\aksha\Desktop\useful\ commands\ and\ batch\ files\vim\ commands.txt<return>      
-inoremap >> >><space>
 inoremap jk <esc>
 nnoremap <space><space> i<space><esc>
-nnoremap <space><return> :tabe C:\Users\aksha\Desktop\cpptemplate.cpp<return>
 "}}}
 autocmd BufNewFile  *.cpp :norm @c
 "" Vimscript file settings ---------------- {{{
+
+" the exclamation after the autocmd signifies that function should be
+" overwritten
 augroup python_group
 	autocmd!
 	autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
-	autocmd filetype python ia iff if:<esc>i
+	autocmd filetype python ia iff if:<return>
+	autocmd filetype python ia firr for i in range(n):<return>
+
 augroup END
 augroup cpp_group
 	autocmd!
 	autocmd filetype cpp ia iff if()<esc>i
+	autocmd filetype cpp ia flrr for(ll i=0;i<n;i++)
+	autocmd filetype cpp ia firr for(int i=0;i<n;i++)
+	autocmd filetype cpp ia farr for(auto i:v)<esc>i
+	autocmd filetype cpp ia vll  vector<ll>
+	autocmd filetype cpp ia vii  vector<int>
+	autocmd filetype cpp ia ll long long
+	autocmd filetype cpp ia tcs long long t;cin>>t;while(t--){ }<esc>i
 	autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ <C-r>% ' <CR>
+	
 augroup END
 
 augroup java_group
